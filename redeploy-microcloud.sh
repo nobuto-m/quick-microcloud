@@ -10,12 +10,12 @@ done
 
 for i in {1..3}; do
     uvt-kvm create \
-        --cpu 4 --memory 8192 \
+        --cpu 4 --memory 16384 \
         --disk 16 \
         --host-passthrough \
         --no-start \
         "mc-$i" \
-        release=jammy
+        release=noble
 done
 
 
@@ -85,11 +85,11 @@ for i in {1..3}; do
         sudo netplan apply
 
         # https://github.com/canonical/microcloud/issues/69
-        sudo snap refresh --channel latest/edge     snapd
-        sudo snap refresh --channel latest/stable   lxd
-        sudo snap install --channel 22.03/stable    microovn
-        sudo snap install --channel latest/edge     microceph
-        sudo snap install --channel latest/edge     microcloud
+        sudo snap install snapd
+        sudo snap install lxd --cohort="+"
+        sudo snap install microceph --cohort="+"
+        sudo snap install microovn --cohort="+"
+        sudo snap install microcloud --cohort="+"
     '
 done
 
