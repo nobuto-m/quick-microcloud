@@ -84,7 +84,6 @@ for i in {1..3}; do
 
         sudo netplan apply
 
-        # https://github.com/canonical/microcloud/issues/69
         sudo snap install snapd
         sudo snap install lxd --cohort="+"
         sudo snap install microceph --cohort="+"
