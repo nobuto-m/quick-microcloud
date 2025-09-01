@@ -70,6 +70,7 @@ done
 
 for i in {1..3}; do
     uvt-kvm wait "mc-$i"
+    # shellcheck disable=SC2016
     uvt-kvm ssh "mc-$i" -- -t '
         set -e
 
@@ -84,11 +85,17 @@ for i in {1..3}; do
 
         sudo netplan apply
 
-        sudo snap install snapd
-        sudo snap install lxd --cohort="+"
-        sudo snap install microceph --cohort="+"
-        sudo snap install microovn --cohort="+"
-        sudo snap install microcloud --cohort="+"
+        # LP: #2104066
+        until (
+            set -e
+            sudo snap install snapd
+            sudo snap install lxd --cohort="+"
+            sudo snap install microceph --cohort="+"
+            sudo snap install microovn --cohort="+"
+            sudo snap install microcloud --cohort="+"
+        ); do
+            sleep "$((RANDOM % 60))"
+        done
     '
 done
 
