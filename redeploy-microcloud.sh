@@ -89,10 +89,10 @@ for i in {1..3}; do
         until (
             set -e
             sudo snap install snapd
-            sudo snap install lxd --cohort="+"
-            sudo snap install microceph --cohort="+"
-            sudo snap install microovn --cohort="+"
-            sudo snap install microcloud --cohort="+"
+            sudo snap install lxd --channel=6/stable --cohort="+"
+            sudo snap install microceph --channel=tentacle/stable --cohort="+"
+            sudo snap install microovn --channel=26.03/stable --cohort="+"
+            sudo snap install microcloud --channel=3/stable --cohort="+"
         ); do
             sleep "$((RANDOM % 60))"
         done
