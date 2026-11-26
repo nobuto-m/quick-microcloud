@@ -1,6 +1,6 @@
 lookup_subnet: 192.168.122.0/24
 initiator: mc-1
-session_passphrase: J7myLzaR4K3yvYCHHJsMfVXecANXgCxY
+session_passphrase: test-passphrase
 systems:
 - name: mc-1
   ovn_uplink_interface: enp7s0
